@@ -1,6 +1,7 @@
 package cc.oobootcamp.principle.srp;
 
 
+
 public class Client {
 
 
@@ -8,11 +9,10 @@ public class Client {
 
         String source = "19/01/2019";
 
-        ConvertStringHandler convertStringHandler = new ConvertStringHandler(source);
-        String target = convertStringHandler.convert();
+        StringHandler stringHandler = new StringHandler(source);
 
-        PrintStringHandler printStringHandler = new PrintStringHandler(source, target);
-        printStringHandler.print();
+        stringHandler.convert();
+        stringHandler.print();
     }
 
 }
