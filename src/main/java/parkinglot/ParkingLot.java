@@ -14,7 +14,7 @@ public class ParkingLot {
 
     public Ticket parking(Car car) {
 
-        if (ticketCarMapper.size() >= capacity) {
+        if (isFull()) {
             throw new NoParkingSpacesException();
         }
 
@@ -33,5 +33,13 @@ public class ParkingLot {
         }
 
         return car;
+    }
+
+    public boolean isFull() {
+        return ticketCarMapper.size() >= capacity;
+    }
+
+    public boolean isNotFull() {
+        return !isFull();
     }
 }
