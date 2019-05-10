@@ -11,7 +11,7 @@ import parkinglot.Ticket;
 public class ParkingLotTest {
 
     @Test
-    public void given_a_parkinglot_with_enough_space_when_parking_then_parking_success() {
+    public void should_parking_success_when_parking_given_a_parkinglot_with_enough_space() {
 
         long capacity = 100l;
         ParkingLot parkingLot = new ParkingLot(capacity);
@@ -23,7 +23,7 @@ public class ParkingLotTest {
     }
 
     @Test(expected = NoParkingSpacesException.class)
-    public void give_a_parkinglot_with_not_enough_space_when_parking_then_parking_failed() {
+    public void should_parking_failed_when_parking_given_a_parkinglot_with_not_enough_space() {
 
         long capacity = 0l;
         ParkingLot parkingLot = new ParkingLot(capacity);
@@ -33,7 +33,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void give_ticket_which_is_matched_with_carList_when_get_car_then_get_success() {
+    public void should_get_success_give_ticket_which_is_matched_with_carList_when_get_car() {
 
         long capacity = 100l;
         ParkingLot parkingLot = new ParkingLot(capacity);
@@ -47,7 +47,7 @@ public class ParkingLotTest {
     }
 
     @Test(expected = InvalidTicketException.class)
-    public void give_ticket_which_is_not_matched_with_carList_when_get_car_then_get_failed() {
+    public void should_get_failed__when_get_car_give_ticket_which_is_not_matched_with_carList() {
 
         long capacity = 100l;
         ParkingLot parkingLot = new ParkingLot(capacity);

@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public class ParkingBoyTest {
 
     @Test
-    public void given_a_car_and_a_parking_boy_and_3_parking_lot_and_first_parking_lot_is_not_full_when_parking_boy_parking_then_park_in_first_parking_lot_and_get_ticket() {
+    public void should_park_in_first_parking_lot_and_get_ticket_when_parking_boy_parking_given_a_car_and_a_parking_boy_and_3_parking_lot_and_first_parking_lot_is_not_full() {
 
         long capacity1 = 100l;
         ParkingLot firstParkingLot = new ParkingLot(capacity1);
@@ -37,7 +37,7 @@ public class ParkingBoyTest {
 
 
     @Test
-    public void given_a_car_and_a_parking_boy_and_3_parking_lot_and_first_parking_lot_is_full_and_second_parking_lot_is_not_full_when_parking_boy_parking_then_park_in_second_parking_lot_and_get_ticket() {
+    public void should_park_in_second_parking_lot_and_get_ticket_when_parking_boy_parking_given_a_car_and_a_parking_boy_and_3_parking_lot_and_first_parking_lot_is_full_and_second_parking_lot_is_not_full() {
 
         long capacity1 = 1l;
         ParkingLot firstParkingLot = new ParkingLot(capacity1);
@@ -57,7 +57,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void given_a_car_and_a_parking_boy_and_3_parking_lot_and_first_two_parking_lot_is_full_and_third_parking_lot_is_not_full_when_parking_boy_parking_then_park_in_third_parking_lot_and_get_ticket() {
+    public void should_park_in_third_parking_lot_and_get_ticket_when_parking_boy_parking_given_a_car_and_a_parking_boy_and_3_parking_lot_and_first_two_parking_lot_is_full_and_third_parking_lot_is_not_full() {
 
         long capacity1 = 1l;
         ParkingLot firstParkingLot = new ParkingLot(capacity1);
@@ -78,7 +78,7 @@ public class ParkingBoyTest {
     }
 
     @Test(expected = NoParkingSpacesException.class)
-    public void given_a_car_and_a_parking_boy_and_2_full_parking_lot_when_parking_boy_parking_then_parking_failed() {
+    public void should_parking_failed_when_parking_boy_parking_given_a_car_and_a_parking_boy_and_2_full_parking_lot() {
 
         long capacity1 = 1l;
         ParkingLot firstParkingLot = new ParkingLot(capacity1);
@@ -94,7 +94,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void given_a_car_and_a_parking_boy_and_2_parking_lot_and_effective_ticket_when_parking_boy_take_car_then_take_correct_car() {
+    public void should_take_correct_car_when_parking_boy_take_car_given_a_car_and_a_parking_boy_and_2_parking_lot_and_effective_ticket() {
 
         long capacity1 = 100l;
         ParkingLot firstParkingLot = new ParkingLot(capacity1);
@@ -113,7 +113,7 @@ public class ParkingBoyTest {
     }
 
     @Test(expected = InvalidTicketException.class)
-    public void given_a_car_and_a_parking_boy_and_2_parking_lot_and_invalid_ticket_when_parking_boy_take_car_then_take_car_failed() {
+    public void should_take_car_failed_when_parking_boy_take_car__given_a_car_and_a_parking_boy_and_2_parking_lot_and_invalid_ticket() {
 
         long capacity1 = 100l;
         ParkingLot firstParkingLot = new ParkingLot(capacity1);
@@ -131,7 +131,7 @@ public class ParkingBoyTest {
     }
 
     @Test(expected = TicketIsUsedException.class)
-    public void given_a_car_and_a_parking_boy_and_2_parking_lot_and_used_ticket_when_parking_boy_take_car_then_take_car_failed() {
+    public void should_take_car_failed_when_parking_boy_take_car_given_a_car_and_a_parking_boy_and_2_parking_lot_and_used_ticket() {
 
         long capacity1 = 100l;
         ParkingLot firstParkingLot = new ParkingLot(capacity1);
