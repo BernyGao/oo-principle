@@ -30,7 +30,7 @@ public class ParkingLot {
 
     public Car takeCar(Ticket ticket) {
 
-        if(ticketUsingRecord.contains(ticket)){
+        if (ticketUsingRecord.contains(ticket)) {
             throw new TicketIsUsedException();
         }
 
@@ -39,6 +39,8 @@ public class ParkingLot {
         if (car == null) {
             throw new InvalidTicketException();
         }
+
+        ticketCarMapper.remove(ticket);
 
         ticketUsingRecord.add(ticket);
 
