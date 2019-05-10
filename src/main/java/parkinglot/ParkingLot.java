@@ -1,30 +1,37 @@
 package parkinglot;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParkingLot {
 
-    private Set<String> carIdList = new HashSet();
-    private long size;
+    private Map<Ticket, Car> ticketCarMapper = new HashMap();
+    private long capacity;
 
-    public void setSize(long size) {
-        this.size = size;
+    public ParkingLot(long capacity) {
+        this.capacity = capacity;
     }
 
+    public Ticket parking(Car car) {
 
-    public boolean parking(String carId) {
-        if (carIdList.size() > size) {
-            return false;
+        if (ticketCarMapper.size() >= capacity) {
+            throw new NoParkingSpacesException();
         }
-        this.carIdList.add(carId);
-        return true;
+
+        Ticket ticket = new Ticket();
+        ticketCarMapper.put(ticket, car);
+
+        return ticket;
     }
 
-    public boolean getCar(String carId) {
-        if(this.carIdList.contains(carId)){
-            return true;
+    public Car takeCar(Ticket ticket) {
+
+        Car car = ticketCarMapper.get(ticket);
+
+        if (car == null) {
+            throw new InvalidTicketException();
         }
-        return false;
+
+        return car;
     }
 }

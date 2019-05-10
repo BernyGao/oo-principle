@@ -2,79 +2,62 @@ package cc.oobootcamp;
 
 import org.junit.Assert;
 import org.junit.Test;
+import parkinglot.Car;
+import parkinglot.InvalidTicketException;
+import parkinglot.NoParkingSpacesException;
 import parkinglot.ParkingLot;
+import parkinglot.Ticket;
 
 public class ParkingLotTest {
 
     @Test
-    public void given_a_parkinglot_with_enough_space_when_parking_then_parking_success(){
+    public void given_a_parkinglot_with_enough_space_when_parking_then_parking_success() {
 
-        ParkingLot parkingLot = new ParkingLot();
+        long capacity = 100l;
+        ParkingLot parkingLot = new ParkingLot(capacity);
 
-        long size = 100l;
+        Car car = new Car();
+        Ticket ticket = parkingLot.parking(car);
 
-        parkingLot.setSize(size);
-
-        String carId = "001";
-
-        boolean parkingResult = parkingLot.parking(carId);
-
-        Assert.assertTrue(parkingResult);
+        Assert.assertNotNull(ticket);
     }
 
-     @Test
-     public void give_a_parkinglot_with_not_enough_space_when_parking_then_parking_failed(){
+    @Test(expected = NoParkingSpacesException.class)
+    public void give_a_parkinglot_with_not_enough_space_when_parking_then_parking_failed() {
 
-         ParkingLot parkingLot = new ParkingLot();
+        long capacity = 0l;
+        ParkingLot parkingLot = new ParkingLot(capacity);
 
-         long size = 0l;
+        Car car = new Car();
+        parkingLot.parking(car);
+    }
 
-         parkingLot.setSize(size);
+    @Test
+    public void give_ticket_which_is_matched_with_carList_when_get_car_then_get_success() {
 
-         String carId = "001";
+        long capacity = 100l;
+        ParkingLot parkingLot = new ParkingLot(capacity);
 
-         boolean parkingResult = parkingLot.parking(carId);
+        Car intoCar = new Car();
+        Ticket ticket = parkingLot.parking(intoCar);
 
-         Assert.assertFalse(parkingResult);
-     }
+        Car outCar = parkingLot.takeCar(ticket);
 
-     @Test
-     public void give_ticket_which_is_matched_with_carList_when_get_car_then_get_success(){
+        Assert.assertEquals(intoCar, outCar);
+    }
 
-         ParkingLot parkingLot = new ParkingLot();
+    @Test(expected = InvalidTicketException.class)
+    public void give_ticket_which_is_not_matched_with_carList_when_get_car_then_get_failed() {
 
-         long size = 100l;
+        long capacity = 100l;
+        ParkingLot parkingLot = new ParkingLot(capacity);
 
-         parkingLot.setSize(size);
+        Ticket invalidTicket = new Ticket();
 
-         String carId = "001";
+        Car car = new Car();
+        parkingLot.parking(car);
 
-         parkingLot.parking(carId);
-
-         boolean getCarResult = parkingLot.getCar(carId);
-
-         Assert.assertTrue(getCarResult);
-
-     }
-
-     @Test
-     public void give_ticket_which_is_not_matched_with_carList_when_get_car_then_get_failed(){
-
-         String carId = "002";
-
-         ParkingLot parkingLot = new ParkingLot();
-
-         boolean getCarResult = parkingLot.getCar(carId);
-
-         Assert.assertFalse(getCarResult);
-
-     }
-
-
-
-
-
-
-
+        parkingLot.takeCar(invalidTicket);
+    }
 
 }
