@@ -1,6 +1,5 @@
 package parkinglot;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +7,7 @@ public class ParkingBoy {
 
     public String name = "GRADUATE";
 
-    private List<ParkingLot> parkingLotList = new ArrayList<>();
+    private List<ParkingLot> parkingLotList;
 
     public ParkingBoy(List<ParkingLot> parkingLotList) {
         this.parkingLotList = parkingLotList;
@@ -16,14 +15,37 @@ public class ParkingBoy {
 
     public Ticket parking(Car car) {
 
-        Optional<ParkingLot> firstParkingLot = parkingLotList.stream().filter(ParkingLot::isNotFull).findFirst();
+        Optional<ParkingLot> firstParkingLotOptional = parkingLotList
+                .stream()
+                .filter(ParkingLot::isNotFull)
+                .findFirst();
 
-        if(!firstParkingLot.isPresent()){
+        if (!firstParkingLotOptional.isPresent()) {
             throw new NoParkingSpacesException();
         }
 
-        Ticket ticket = firstParkingLot.get().parking(car);
+        Ticket ticket = firstParkingLotOptional
+                .get()
+                .parking(car);
 
         return ticket;
+    }
+
+    public Car takeCar(Ticket ticket) {
+
+        Optional<ParkingLot> parkingLotOptional = parkingLotList
+                .stream()
+                .filter(parkingLot -> parkingLot.containsCar(ticket))
+                .findFirst();
+
+        if (!parkingLotOptional.isPresent()) {
+            throw new InvalidTicketException();
+        }
+
+        Car car = parkingLotOptional
+                .get()
+                .takeCar(ticket);
+
+        return car;
     }
 }

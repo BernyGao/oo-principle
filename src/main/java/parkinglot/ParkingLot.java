@@ -1,12 +1,16 @@
 package parkinglot;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ParkingLot {
 
     private Map<Ticket, Car> ticketCarMapper = new HashMap();
     private long capacity;
+
+    private Set<Ticket> ticketUsingRecord = new HashSet<>();
 
     public ParkingLot(long capacity) {
         this.capacity = capacity;
@@ -26,13 +30,23 @@ public class ParkingLot {
 
     public Car takeCar(Ticket ticket) {
 
+        if(ticketUsingRecord.contains(ticket)){
+            throw new TicketIsUsedException();
+        }
+
         Car car = ticketCarMapper.get(ticket);
 
         if (car == null) {
             throw new InvalidTicketException();
         }
 
+        ticketUsingRecord.add(ticket);
+
         return car;
+    }
+
+    public boolean containsCar(Ticket ticket) {
+        return ticketCarMapper.containsKey(ticket);
     }
 
     public boolean isFull() {
