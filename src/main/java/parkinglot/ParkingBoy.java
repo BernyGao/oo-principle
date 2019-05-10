@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class ParkingBoy {
 
-    public String name = "GRADUATE";
+    private String name = "GRADUATE";
 
     private List<ParkingLot> parkingLotList;
 
