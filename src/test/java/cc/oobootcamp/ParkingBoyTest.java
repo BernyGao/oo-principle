@@ -115,11 +115,9 @@ public class ParkingBoyTest {
     @Test(expected = InvalidTicketException.class)
     public void should_take_car_failed_when_parking_boy_take_car__given_a_car_and_a_parking_boy_and_2_parking_lot_and_invalid_ticket() {
 
-        long capacity1 = 100l;
-        ParkingLot firstParkingLot = new ParkingLot(capacity1);
+        ParkingLot firstParkingLot = new ParkingLot(100l);
         firstParkingLot.parking(new Car());
-        long capacity2 = 100l;
-        ParkingLot secondParkingLot = new ParkingLot(capacity2);
+        ParkingLot secondParkingLot = new ParkingLot(100l);
         secondParkingLot.parking(new Car());
         List<ParkingLot> parkingLotList = Stream.of(firstParkingLot, secondParkingLot).collect(Collectors.toList());
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
