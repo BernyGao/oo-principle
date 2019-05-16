@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class ParkingBoy {
 
-    private String name = "GRADUATE";
+    private String name = "Graduate";
 
     private List<ParkingLot> parkingLotList;
 
@@ -44,7 +44,7 @@ public class ParkingBoy {
 
         Car car = parkingLotOptional
                 .get()
-                .takeCar(ticket);
+                .take(ticket);
 
         return car;
     }

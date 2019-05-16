@@ -31,7 +31,7 @@ public class ParkingBoyTest {
 
         Ticket ticket = parkingBoy.parking(intoCar);
 
-        Car outCar = firstParkingLot.takeCar(ticket);
+        Car outCar = firstParkingLot.take(ticket);
         Assert.assertEquals(intoCar, outCar);
     }
 
@@ -52,7 +52,7 @@ public class ParkingBoyTest {
 
         Ticket ticket = parkingBoy.parking(intoCar);
 
-        Car outCar = secondParkingLot.takeCar(ticket);
+        Car outCar = secondParkingLot.take(ticket);
         Assert.assertEquals(intoCar, outCar);
     }
 
@@ -73,7 +73,7 @@ public class ParkingBoyTest {
 
         Ticket ticket = parkingBoy.parking(intoCar);
 
-        Car outCar = thirdParkingLot.takeCar(ticket);
+        Car outCar = thirdParkingLot.take(ticket);
         Assert.assertEquals(intoCar, outCar);
     }
 

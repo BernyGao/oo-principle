@@ -28,7 +28,7 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Car takeCar(Ticket ticket) {
+    public Car take(Ticket ticket) {
 
         if (ticketUsingRecord.contains(ticket)) {
             throw new TicketIsUsedException();
@@ -57,5 +57,9 @@ public class ParkingLot {
 
     public boolean isNotFull() {
         return !isFull();
+    }
+
+    public long getEmptySpaceNumber() {
+        return capacity - ticketCarMapper.size();
     }
 }

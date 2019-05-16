@@ -41,7 +41,7 @@ public class ParkingLotTest {
         Car intoCar = new Car();
         Ticket ticket = parkingLot.parking(intoCar);
 
-        Car outCar = parkingLot.takeCar(ticket);
+        Car outCar = parkingLot.take(ticket);
 
         Assert.assertEquals(intoCar, outCar);
     }
@@ -57,7 +57,7 @@ public class ParkingLotTest {
         Car car = new Car();
         parkingLot.parking(car);
 
-        parkingLot.takeCar(invalidTicket);
+        parkingLot.take(invalidTicket);
     }
 
 }
